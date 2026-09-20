@@ -1,0 +1,13 @@
+{
+  "name": "thach-me",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "THACH. — Nguyễn Ngọc Thạch personal 3D portfolio",
+  "scripts": {
+    "dev": "node scripts/serve.mjs",
+    "build": "node scripts/check.mjs",
+    "check": "node scripts/check.mjs"
+  },
+  "engines": { "node": ">=18" }
+}
