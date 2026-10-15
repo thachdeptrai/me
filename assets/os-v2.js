@@ -43,7 +43,7 @@ osModeButton.addEventListener('click', () => {
 osSetMode(osReadMode());
 
 const osCounter = os('#os-chapter-counter');
-const osProgress = os('#os-chapter-progress span');
+const osProgress = os('#os-chapter-progress');
 let osProgressFrame = 0;
 function osUpdateProgress() {
   osProgressFrame = 0;
@@ -241,3 +241,53 @@ osa('[data-share-project]').forEach(button=>button.addEventListener('click',asyn
   catch {button.textContent=link.href;}
 }));
 osApplySharedProject();
+
+const osPipelineStages = [
+  ['SOURCE','Developer commits a source revision; never a built binary as source.'],
+  ['VALIDATE','Check syntax, assets, tests and configuration before publishing.'],
+  ['BUILD','Create the app or static site from a reproducible source snapshot.'],
+  ['PACKAGE','Bundle build outputs for the correct target platform.'],
+  ['RELEASE','Publish versioned artifacts with changelog and integrity checks.'],
+  ['DEPLOY','Deliver web assets or binaries to the intended audience.']
+];
+const osPipelineButtons=osa('[data-os-pipeline]');
+const osPipelinePlay=os('#os-pipeline-play');
+let osPipelineIndex=0,osPipelineTimer=null;
+function osPipelineShow(index) {
+  osPipelineIndex=Math.max(0,Math.min(index,osPipelineStages.length-1));
+  osPipelineButtons.forEach((button,i)=>{
+    button.setAttribute('aria-pressed',String(i===osPipelineIndex));
+    button.dataset.active=String(i===osPipelineIndex);
+  });
+  const [name,description]=osPipelineStages[osPipelineIndex];
+  os('#os-pipeline-description').textContent='SIMULATION · '+name+' — '+description;
+}
+function osPipelineStop(){
+  if(osPipelineTimer!==null)clearInterval(osPipelineTimer);
+  osPipelineTimer=null;osPipelinePlay.textContent='▶ Run pipeline';osPipelinePlay.setAttribute('aria-pressed','false');
+}
+function osPipelineStart(){
+  osPipelineStop();if(osPipelineIndex===osPipelineStages.length-1)osPipelineShow(0);
+  osPipelinePlay.textContent='Ⅱ Pause';osPipelinePlay.setAttribute('aria-pressed','true');
+  osPipelineTimer=setInterval(()=>{
+    if(osPipelineIndex>=osPipelineStages.length-1){osPipelineStop();return;}
+    osPipelineShow(osPipelineIndex+1);
+    if(osPipelineIndex===osPipelineStages.length-1)osPipelineStop();
+  },1050);
+}
+osPipelineButtons.forEach((button,index)=>button.addEventListener('click',()=>{
+  osPipelineStop();osPipelineShow(index);
+}));
+osPipelinePlay.addEventListener('click',()=>osPipelineTimer===null?osPipelineStart():osPipelineStop());
+os('#os-pipeline-step').addEventListener('click',()=>{osPipelineStop();osPipelineShow((osPipelineIndex+1)%osPipelineStages.length);});
+os('#os-pipeline-reset').addEventListener('click',()=>{osPipelineStop();osPipelineShow(0);});
+document.addEventListener('visibilitychange',()=>{if(document.hidden)osPipelineStop();});
+new IntersectionObserver(entries=>{if(!entries[0].isIntersecting)osPipelineStop();}).observe(os('#os-engineering'));
+osPipelineShow(0);
+
+// IntersectionObserver is used for chapter entrances, without scroll locking or input hijacking.
+const osSceneObserver=new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('os-revealed');}});
+},{threshold:.12,rootMargin:'0px 0px -8% 0px'});
+OS_SECTIONS.forEach(([id])=>{const node=document.getElementById(id);if(node)osSceneObserver.observe(node);});
+osSceneObserver.observe(os('#os-engineering'));
