@@ -19,10 +19,12 @@ function applyMotion() {
 motionButton.addEventListener('click',()=>{motionPaused=!motionPaused;applyMotion();if(motionPaused)stopPacket();});
 reducedMotion.addEventListener('change',event=>{motionPaused=event.matches;applyMotion();if(motionPaused)stopPacket();});
 applyMotion();
-$$('[data-field]').forEach((button,index)=>{
+let orbitManuallyChosen = false;
+$('[data-field]').forEach((button,index)=>{
   button.setAttribute('aria-pressed','false');
   button.addEventListener('click',()=>{
-    $$('[data-field]').forEach(node=>{node.classList.remove('is-active');node.setAttribute('aria-pressed','false');});
+    orbitManuallyChosen = true;
+    $('[data-field]').forEach(node=>{node.classList.remove('is-active');node.setAttribute('aria-pressed','false');});
     button.classList.add('is-active');button.setAttribute('aria-pressed','true');
     const field=fields[button.dataset.field];
     $('#field-name').textContent=field.name;$('#field-description').textContent=field.description;
@@ -98,9 +100,24 @@ for(const [index,item] of cases.entries()){
 }
 
 let scrollPending=false;
+// V2 camera storytelling: scroll modifies the WebGL view only in the hero,
+ // respecting reduced motion, manual orbit selection and small screens.
+let storyCameraStage = -1;
+function updateStoryCamera(){
+  if (motionPaused || orbitManuallyChosen || innerWidth < 801) return;
+  const hero = $('#home');
+  const rect = hero.getBoundingClientRect();
+  if (rect.bottom <= 0 || rect.top >= innerHeight) return;
+  const fraction = Math.min(1, Math.max(0, -rect.top / Math.max(1, rect.height * .82)));
+  const stage = Math.min(7, Math.floor(fraction * 8));
+  if (stage !== storyCameraStage) {
+    universe.select(stage);
+    storyCameraStage = stage;
+  }
+}
 function updateProgress(){
   const height=document.documentElement.scrollHeight-innerHeight;
-  $('.reading-progress span').style.transform='scaleX('+Math.min(1,Math.max(0,height>0?scrollY/height:0))+')';scrollPending=false;
+  $('.reading-progress span').style.transform='scaleX('+Math.min(1,Math.max(0,height>0?scrollY/height:0))+')';updateStoryCamera();scrollPending=false;
 }
 addEventListener('scroll',()=>{if(!scrollPending){scrollPending=true;requestAnimationFrame(updateProgress);}},{passive:true});
 addEventListener('resize',updateProgress,{passive:true});updateProgress();

@@ -1,4 +1,4 @@
-# THACH.
+# THACH.OS V2 — Beyond The Interface
 
 Portfolio 3D của **Nguyễn Ngọc Thạch** — Technology • Systems • Development.
 
@@ -12,7 +12,7 @@ Yêu cầu Node.js 18 trở lên. Không cần cài dependency.
 npm run dev
 ```
 
-Mở `http://localhost:4173`. Chạy `npm run check` để kiểm tra syntax, asset và liên kết nội bộ.
+Mở `http://localhost:4173`. Chạy `npm run check` để kiểm tra syntax, asset và liên kết nội bộ; chạy `npm test` để kiểm tra cấu trúc V2 và regression.
 
 ## GitHub Pages
 
@@ -28,7 +28,18 @@ Sau khi đẩy mã nguồn lên nhánh `main`, vào **Settings → Pages → Bui
 URL dự kiến sau khi Pages triển khai thành công: `https://thachdeptrai.github.io/me/`.
 Địa chỉ này là cấu hình dự kiến, không xác nhận việc đã xuất bản.
 
-Không cần GitHub Actions hoặc secret. Tất cả đường dẫn asset là tương đối nên hoạt động dưới `/me/`.
+Không cần secret để triển khai bản tĩnh. GitHub Actions nay chạy kiểm tra source/preview; Pages tiếp tục dùng nhánh `main` sau khi PR được review và merge. Tất cả đường dẫn asset là tương đối nên hoạt động dưới `/me/`.
+
+## Các trải nghiệm mới trong THACH.OS V2
+
+- **Cinematic chapters:** chỉ mục điều hướng 8 đích, tiến độ chapter, camera WebGL thay đổi theo scroll trong phần hero (không chiếm quyền scroll, không can thiệp khi đã chọn node hoặc bật reduced motion).
+- **Experience mode:** Cinema → Focus → Lite; lựa chọn được lưu cục bộ. Lite/Focus tạm dừng chuyển động để tiết kiệm tài nguyên.
+- **Command palette:** `Ctrl/⌘ + K` hoặc `/` (khi không gõ văn bản); tìm chương, mở GitHub, điều hướng tới lab.
+- **Engineering Lab:** Packet Journey (Play/Pause/Step/Reset/Speed), Architecture Inspector, terminal chỉ nhận lệnh cố định và release pipeline mô phỏng. Mọi mô phỏng đều được gắn nhãn.
+- **Share project:** sao chép liên kết `?project=nro#work`, `?project=server#work`, `?project=mobile#work`, `?project=cross#work`.
+- **CI:** syntax/asset/anchor test, regression test, HTTP smoke GitHub Pages `/me/`, browser smoke và screenshot desktop/mobile khi runner có Chrome.
+
+Các file V2 bổ sung: `assets/os-v2.css`, `assets/os-v2.js`, `scripts/test-v2.mjs`, `.github/workflows/portfolio-ci.yml`. Hiện tại **không cần** bundler, React hay npm runtime dependencies. Source gốc được giữ để bảo toàn các tính năng đang sử dụng.
 
 ## Nội dung
 
@@ -70,3 +81,7 @@ Nội dung chính nằm trong HTML; các tab project dùng ARIA và hỗ trợ p
 Không dùng scroll hijacking. Sơ đồ packet là mô phỏng kiến trúc, không phải live telemetry.
 
 © 2026 Nguyễn Ngọc Thạch.
+
+## Review & QA V2
+
+Mọi thay đổi V2 nằm trong `feat/thach-os-v2-cinematic` trước khi merge. Xem `docs/THACH-OS-V2.md`, `docs/QA-V2.md` và `docs/ASSET-LICENSES.md` để đọc kiến trúc, phạm vi test và giới hạn chưa xác minh. Không tự động triển khai nhánh feature lên production.

@@ -6,28 +6,30 @@
   <meta name="theme-color" content="#080c10">
   <meta name="description" content="Nguyễn Ngọc Thạch — hiện làm việc tại VinFast, SAP EWM / vận hành kho. Khám phá các dự án mobile, Java game server, WebGL, networking và hệ thống triển khai thực tế.">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="THACH. — Building beyond titles.">
+  <meta property="og:title" content="THACH.OS — Beyond The Interface">
   <meta property="og:description" content="Nguyễn Ngọc Thạch. Technology • Systems • Development. From operations to code. From ideas to working systems.">
   <meta name="twitter:card" content="summary">
-  <title>THACH. — Nguyễn Ngọc Thạch · Building beyond titles.</title>
+  <title>THACH.OS — Nguyễn Ngọc Thạch · Beyond The Interface.</title>
   <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg">
   <link rel="stylesheet" href="./assets/style.css">
+  <link rel="stylesheet" href="./assets/os-v2.css">
   <script type="module" src="./assets/app.js"></script>
+  <script type="module" src="./assets/os-v2.js"></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Đi tới nội dung</a>
   <div class="reading-progress" aria-hidden="true"><span></span></div>
   <header class="site-header">
-    <a class="brand" href="#home" aria-label="THACH — về đầu trang">THACH<span>.</span></a>
+    <a class="brand" href="#home" aria-label="THACH.OS — về đầu trang">THACH<span>.</span><span class="brand-os">OS / V2</span></a>
     <nav class="desktop-nav" aria-label="Điều hướng chính">
       <a href="#about">Về mình</a><a href="#work">Dự án</a><a href="#systems">Hệ thống</a><a href="#journey">Hành trình</a><a href="#labs">Labs</a>
     </nav>
-    <div class="header-actions"><a class="contact-link" href="#contact">Kết nối <span aria-hidden="true">↗</span></a><button class="menu-toggle" aria-label="Mở menu" aria-expanded="false" aria-controls="mobile-nav"><span></span><span></span></button></div>
+    <div class="header-actions"><div class="os-utility" aria-label="Điều khiển trải nghiệm"><span class="os-utility-label">EXPERIENCE</span><button type="button" id="os-mode" class="os-mode-button" aria-label="Chọn chế độ trải nghiệm">◉ Cinema</button><button type="button" id="os-palette-open" class="os-trigger" aria-label="Mở menu điều hướng nhanh">⌕ Navigate <kbd>Ctrl K</kbd></button></div><a class="contact-link" href="#contact">Kết nối <span aria-hidden="true">↗</span></a><button class="menu-toggle" aria-label="Mở menu" aria-expanded="false" aria-controls="mobile-nav"><span></span><span></span></button></div>
     <nav id="mobile-nav" class="mobile-nav" aria-label="Điều hướng điện thoại" hidden><a href="#about">Về mình</a><a href="#work">Dự án</a><a href="#systems">Hệ thống</a><a href="#journey">Hành trình</a><a href="#labs">Labs</a><a href="#contact">Kết nối</a></nav>
   </header>
   <main id="main">
     <section id="home" class="hero section-shell" aria-labelledby="hero-title">
-      <div class="hero-top mono"><span>PERSONAL UNIVERSE / 2026</span><span class="hero-coordinate">BUILD · LEARN · SOLVE · IMPROVE</span></div>
+      <div class="hero-top mono"><span>THACH.OS / DIGITAL UNIVERSE / 2026</span><span class="hero-coordinate">BUILD · LEARN · SOLVE · IMPROVE</span></div>
       <div class="hero-layout">
         <div class="hero-copy">
           <p class="eyebrow"><span class="small-cross" aria-hidden="true">✳</span> NGUYỄN NGỌC THẠCH</p>
@@ -56,6 +58,17 @@
         </div>
       </div>
       <div class="hero-bottom mono"><a href="#currently">SCROLL TO EXPLORE <span aria-hidden="true">↓</span></a><p>MOBILE / GAME / BACKEND / WEB / INFRASTRUCTURE</p><a href="https://github.com/thachdeptrai" target="_blank" rel="noopener noreferrer">GITHUB ↗</a></div>
+    </section>
+
+    <section id="os-map" class="section-shell section-space os-field" aria-labelledby="os-map-title">
+      <div class="section-index"><span class="mono mint">SYSTEM / CHAPTER DIRECTORY</span><span class="mono dim">CHOOSE YOUR PATH</span></div>
+      <div class="section-heading"><h2 id="os-map-title" class="os-scene-title">Explore the <em>universe.</em></h2><p>Cuộn để khám phá hoặc chọn điểm đến. Mỗi chương thể hiện một góc nhìn về hệ thống mình xây dựng.</p></div>
+      <nav class="os-explore-map" aria-label="Khám phá các chương">
+        <a href="#currently"><span>01 / WORK</span><strong>Current reality ↗</strong></a><a href="#about"><span>02 / IDENTITY</span><strong>Two worlds ↗</strong></a>
+        <a href="#capabilities"><span>03 / SYSTEMS</span><strong>Technology ↗</strong></a><a href="#work"><span>04 / PROJECTS</span><strong>Project galaxy ↗</strong></a>
+        <a href="#systems"><span>05 / NETWORK</span><strong>Packet journey ↗</strong></a><a href="#journey"><span>06 / STORY</span><strong>Build timeline ↗</strong></a>
+        <a href="#os-engineering"><span>07 / LAB</span><strong>Engineering lab ↗</strong></a><a href="#contact"><span>08 / CONNECT</span><strong>Contact portal ↗</strong></a>
+      </nav>
     </section>
 
     <section id="currently" class="current-section section-shell" aria-labelledby="current-title">
@@ -98,19 +111,19 @@
       <div class="project-tabs" role="tablist" aria-label="Dự án nổi bật"><button role="tab" id="tab-nro" aria-controls="project-nro" aria-selected="true" tabindex="0" data-project="nro">01 / NRO GT</button><button role="tab" id="tab-server" aria-controls="project-server" aria-selected="false" tabindex="-1" data-project="server">02 / JAVA SERVER</button><button role="tab" id="tab-mobile" aria-controls="project-mobile" aria-selected="false" tabindex="-1" data-project="mobile">03 / MOBILE</button><button role="tab" id="tab-cross" aria-controls="project-cross" aria-selected="false" tabindex="-1" data-project="cross">04 / CROSS-PLATFORM</button></div>
       <article id="project-nro" class="project-panel" role="tabpanel" aria-labelledby="tab-nro" tabindex="0">
         <div class="project-visual nro-visual"><div class="visual-meta mono"><span>ECOSYSTEM / SYSTEM MAP</span><span>01—04</span></div><div class="nro-map"><div class="map-client"><span>UNITY</span><strong>Client</strong><small>Android · iOS · Windows</small></div><div class="map-line" aria-hidden="true"></div><div class="map-core"><span>JAVA</span><strong>NRO<span>GT</span></strong><small>GAME SERVER</small></div><div class="map-line" aria-hidden="true"></div><div class="map-client"><span>WEBGL + WSS</span><strong>Web client</strong><small>Browser · Gateway · TCP</small></div><div class="map-base"><span>MariaDB</span><span>Website</span><span>Deployment</span></div></div><div class="visual-footer mono">ONE ECOSYSTEM. MULTIPLE PLATFORMS.</div></div>
-        <div class="project-copy"><p class="eyebrow mint">FEATURED PROJECT / GAME ECOSYSTEM</p><h3>NRO GT<br>Ecosystem<span class="mint">.</span></h3><p>Kết nối Unity client, Java game server, web client, cơ sở dữ liệu và website thành một hệ sinh thái game.</p><p>Mỗi nền tảng là một bài toán riêng: networking, cấu hình build, đóng gói và triển khai.</p><div class="tags"><span>Java</span><span>Unity / C#</span><span>WebGL</span><span>Node.js</span><span>MariaDB</span></div><div class="project-actions"><a class="button primary" href="https://github.com/thachdeptrai/NroGT-Releases/releases/tag/v1.0" target="_blank" rel="noopener noreferrer">Xem bản phát hành <span>↗</span></a><a class="text-link" href="https://github.com/thachdeptrai/NroGT" target="_blank" rel="noopener noreferrer">Source code ↗</a></div><span class="project-note mono">RELEASE v1.0 · APK / IPA / WINDOWS</span></div>
+        <div class="project-copy"><button type="button" class="small-button os-share-project" data-share-project="nro" aria-label="Sao chép liên kết dự án nro">↗ Share project</button><p class="eyebrow mint">FEATURED PROJECT / GAME ECOSYSTEM</p><h3>NRO GT<br>Ecosystem<span class="mint">.</span></h3><p>Kết nối Unity client, Java game server, web client, cơ sở dữ liệu và website thành một hệ sinh thái game.</p><p>Mỗi nền tảng là một bài toán riêng: networking, cấu hình build, đóng gói và triển khai.</p><div class="tags"><span>Java</span><span>Unity / C#</span><span>WebGL</span><span>Node.js</span><span>MariaDB</span></div><div class="project-actions"><a class="button primary" href="https://github.com/thachdeptrai/NroGT-Releases/releases/tag/v1.0" target="_blank" rel="noopener noreferrer">Xem bản phát hành <span>↗</span></a><a class="text-link" href="https://github.com/thachdeptrai/NroGT" target="_blank" rel="noopener noreferrer">Source code ↗</a></div><span class="project-note mono">RELEASE v1.0 · APK / IPA / WINDOWS</span></div>
       </article>
       <article id="project-server" class="project-panel" role="tabpanel" aria-labelledby="tab-server" tabindex="0" hidden>
         <div class="project-visual"><div class="visual-meta mono"><span>JAVA / SERVER MODULES</span><span>02—04</span></div><div class="server-modules"><strong>Game server</strong><div><span>Boss & NPC</span><span>Events</span><span>Player & Item</span><span>Shop & Voucher</span><span>Clan</span><span>Giftcode</span><span>Ranking</span><span>Admin tools</span><span>Networking</span></div><p>Database persistence</p></div><div class="visual-footer mono">GAME LOGIC ↔ NETWORKING ↔ DATABASE</div></div>
-        <div class="project-copy"><p class="eyebrow mint">GAMEPLAY / PERSISTENCE / TOOLS</p><h3>Java game<br>server<span class="mint">.</span></h3><p>Phát triển và chỉnh sửa các hệ thống boss, NPC, event, cửa hàng, voucher, giftcode, bảng xếp hạng, vật phẩm, người chơi và bang hội.</p><p>Quan tâm cả vòng đời dữ liệu: xử lý packet, cập nhật trạng thái, kiểm tra logic và lưu vào database.</p><div class="tags"><span>Java</span><span>TCP</span><span>MariaDB</span><span>Admin tools</span></div><a class="text-link" href="#problems">Những bài toán đã gặp ↓</a></div>
+        <div class="project-copy"><button type="button" class="small-button os-share-project" data-share-project="server" aria-label="Sao chép liên kết dự án server">↗ Share project</button><p class="eyebrow mint">GAMEPLAY / PERSISTENCE / TOOLS</p><h3>Java game<br>server<span class="mint">.</span></h3><p>Phát triển và chỉnh sửa các hệ thống boss, NPC, event, cửa hàng, voucher, giftcode, bảng xếp hạng, vật phẩm, người chơi và bang hội.</p><p>Quan tâm cả vòng đời dữ liệu: xử lý packet, cập nhật trạng thái, kiểm tra logic và lưu vào database.</p><div class="tags"><span>Java</span><span>TCP</span><span>MariaDB</span><span>Admin tools</span></div><a class="text-link" href="#problems">Những bài toán đã gặp ↓</a></div>
       </article>
       <article id="project-mobile" class="project-panel" role="tabpanel" aria-labelledby="tab-mobile" tabindex="0" hidden>
         <div class="project-visual mobile-visual"><div class="visual-meta mono"><span>MOBILE / APPLICATION LAYERS</span><span>03—04</span></div><div class="app-layers"><div><small>EXPERIENCE</small><strong>React Native</strong><span>Navigation · Form validation · Responsive UI</span></div><div><small>STATE & DATA</small><strong>TypeScript / Redux</strong><span>Axios · REST API · Firebase</span></div><div><small>PLATFORMS</small><strong>Android + iOS</strong><span>Build · Test · Iterate</span></div></div><div class="visual-footer mono">APPLICATION ARCHITECTURE</div></div>
-        <div class="project-copy"><p class="eyebrow mint">MOBILE DEVELOPMENT</p><h3>Từ giao diện<br>đến dữ liệu<span class="mint">.</span></h3><p>Làm việc với React Native và JavaScript / TypeScript trong các project mobile: giao diện, điều hướng, quản lý state, form và tích hợp API.</p><p>Hướng đến trải nghiệm gọn, dễ sử dụng và luồng dữ liệu rõ ràng. GitHub cũng có project Android PhonePulse để xem thêm quá trình làm việc với mobile.</p><div class="tags"><span>React Native</span><span>TypeScript</span><span>Redux</span><span>Firebase</span></div><a class="text-link" href="https://github.com/thachdeptrai/PhonePulse" target="_blank" rel="noopener noreferrer">Xem project Android PhonePulse ↗</a></div>
+        <div class="project-copy"><button type="button" class="small-button os-share-project" data-share-project="mobile" aria-label="Sao chép liên kết dự án mobile">↗ Share project</button><p class="eyebrow mint">MOBILE DEVELOPMENT</p><h3>Từ giao diện<br>đến dữ liệu<span class="mint">.</span></h3><p>Làm việc với React Native và JavaScript / TypeScript trong các project mobile: giao diện, điều hướng, quản lý state, form và tích hợp API.</p><p>Hướng đến trải nghiệm gọn, dễ sử dụng và luồng dữ liệu rõ ràng. GitHub cũng có project Android PhonePulse để xem thêm quá trình làm việc với mobile.</p><div class="tags"><span>React Native</span><span>TypeScript</span><span>Redux</span><span>Firebase</span></div><a class="text-link" href="https://github.com/thachdeptrai/PhonePulse" target="_blank" rel="noopener noreferrer">Xem project Android PhonePulse ↗</a></div>
       </article>
       <article id="project-cross" class="project-panel" role="tabpanel" aria-labelledby="tab-cross" tabindex="0" hidden>
         <div class="project-visual"><div class="visual-meta mono"><span>CROSS-PLATFORM / BUILD TARGETS</span><span>04—04</span></div><div class="platform-map"><strong>Unity <span>+</span> LibGDX</strong><div><span><b>APK</b>Android</span><span><b>IPA</b>iOS</span><span><b>EXE</b>Windows</span><span><b>WEB</b>WebGL</span></div><p>Gradle / RoboVM / jpackage<br>GitHub Actions / ProGuard</p></div><div class="visual-footer mono">SOURCE → BUILD → DISTRIBUTION</div></div>
-        <div class="project-copy"><p class="eyebrow mint">CROSS-PLATFORM DEVELOPMENT</p><h3>Một ý tưởng.<br>Nhiều nền tảng<span class="mint">.</span></h3><p>Nghiên cứu Unity và LibGDX, làm việc với các đích build Android, iOS, Windows và WebGL.</p><p>Từ Gradle, RoboVM và jpackage đến ký ứng dụng, dependency và pipeline build — mỗi môi trường đều cần được hiểu và kiểm tra riêng.</p><div class="tags"><span>Unity</span><span>LibGDX</span><span>Gradle</span><span>RoboVM</span><span>jpackage</span></div><a class="text-link" href="https://github.com/thachdeptrai/NroGT2" target="_blank" rel="noopener noreferrer">Xem project build iOS ↗</a></div>
+        <div class="project-copy"><button type="button" class="small-button os-share-project" data-share-project="cross" aria-label="Sao chép liên kết dự án cross">↗ Share project</button><p class="eyebrow mint">CROSS-PLATFORM DEVELOPMENT</p><h3>Một ý tưởng.<br>Nhiều nền tảng<span class="mint">.</span></h3><p>Nghiên cứu Unity và LibGDX, làm việc với các đích build Android, iOS, Windows và WebGL.</p><p>Từ Gradle, RoboVM và jpackage đến ký ứng dụng, dependency và pipeline build — mỗi môi trường đều cần được hiểu và kiểm tra riêng.</p><div class="tags"><span>Unity</span><span>LibGDX</span><span>Gradle</span><span>RoboVM</span><span>jpackage</span></div><a class="text-link" href="https://github.com/thachdeptrai/NroGT2" target="_blank" rel="noopener noreferrer">Xem project build iOS ↗</a></div>
       </article>
     </section>
 
@@ -147,6 +160,48 @@
       <div class="labs-grid"><details><summary><span class="lab-glyph" aria-hidden="true">{ }</span><span class="mono">01 / TOOLS</span><h3>Tools for builders</h3><span class="lab-plus" aria-hidden="true">+</span></summary><p>Giftcode Manager, công cụ quản trị, build tools, launchers và những hướng thử nghiệm automation để giảm thao tác lặp lại.</p><div class="tags"><span>Admin tools</span><span>Giftcode Manager</span><span>Build tools</span></div></details><details><summary><span class="lab-glyph" aria-hidden="true">↔</span><span class="mono">02 / SYSTEMS</span><h3>Connect the dots</h3><span class="lab-plus" aria-hidden="true">+</span></summary><p>WebSocket gateway, WebGL và các thử nghiệm networking: tìm hiểu packet đi đâu, dữ liệu được đọc thế nào và trạng thái thay đổi ra sao.</p><div class="tags"><span>WebSocket ↔ TCP</span><span>WebGL</span><span>Networking</span></div></details><details><summary><span class="lab-glyph" aria-hidden="true">✳</span><span class="mono">03 / PLAYGROUND</span><h3>Build. Play. Repeat.</h3><span class="lab-plus" aria-hidden="true">+</span></summary><p>Game experiments, hệ thống server, bảng xếp hạng, UI và asset experiments. Mỗi thử nghiệm bắt đầu từ một câu hỏi cần hiểu rõ hơn.</p><div class="tags"><span>Game systems</span><span>UI experiments</span><span>Assets</span></div></details></div>
     </section>
 
+    <section id="os-engineering" class="section-shell section-space os-field" aria-labelledby="os-engineering-title">
+  <div class="section-index"><span class="mono mint">THACH.OS / EXPERIMENTAL SYSTEMS</span><span class="mono dim">LIVE INTERACTION · SAFE SIMULATIONS</span></div>
+  <div class="section-heading"><h2 id="os-engineering-title" class="os-scene-title">Engineer the <em>invisible.</em></h2><p>Không chỉ nhìn công nghệ. Hãy tương tác với cách các thành phần kết nối.</p></div>
+  <p class="os-lab-intro">Packet và build sequence là <strong>SIMULATION</strong>, không phải dữ liệu từ server đang chạy. Terminal chỉ nhận lệnh có sẵn, không thực thi shell.</p>
+  <div class="os-lab-grid">
+    <article class="os-lab-card os-lab-card--wide">
+      <span class="os-lab-meta">LAB 01 / PACKET JOURNEY / SIMULATION</span><h3>Follow the signal.</h3><p>Browser → WebSocket → Gateway → Java server → Database (khi cần lưu trữ).</p>
+      <div class="os-packet-path" aria-label="Các bước mô phỏng packet">
+        <button type="button" data-os-packet="0">01 / Browser</button><button type="button" data-os-packet="1">02 / WebSocket</button><button type="button" data-os-packet="2">03 / Gateway</button><button type="button" data-os-packet="3">04 / Java Server</button><button type="button" data-os-packet="4">05 / Database</button>
+      </div>
+      <div class="os-lab-controls">
+        <button type="button" id="os-packet-play" aria-pressed="false">▶ Play</button><button type="button" id="os-packet-step">→ Step</button><button type="button" id="os-packet-reset">↺ Reset</button>
+        <label for="os-packet-speed">Speed <select id="os-packet-speed"><option value="2000">0.75×</option><option value="1250" selected>1×</option><option value="625">2×</option></select></label>
+      </div>
+      <div id="os-packet-state" class="os-packet-state" role="status" aria-live="polite">SIMULATION · Browser</div>
+    </article>
+    <article class="os-lab-card">
+      <span class="os-lab-meta">LAB 02 / SYSTEM ARCHITECTURE</span><h3>Inspect the layers.</h3><p>Chọn module để xem trách nhiệm và luồng phụ thuộc.</p>
+      <div class="os-architecture" aria-label="Các thành phần trong kiến trúc">
+        <button type="button" data-os-arch="client">Client</button><button type="button" data-os-arch="bridge">Gateway</button><button type="button" data-os-arch="server">Java server</button><button type="button" data-os-arch="storage">Database</button><button type="button" data-os-arch="web">Web</button><button type="button" data-os-arch="release">Delivery</button>
+      </div>
+      <div id="os-architecture-detail" class="os-architecture-detail" aria-live="polite">Chọn một module để xem vai trò.</div>
+    </article>
+    <article class="os-lab-card">
+      <span class="os-lab-meta">LAB 03 / SAFE COMMAND TERMINAL</span><h3>Talk to the system.</h3><p>Gõ help, projects, skills hoặc contact. Phím ↑ ↓ duyệt lịch sử lệnh.</p>
+      <div class="os-terminal" aria-label="Command terminal giả lập">
+        <div class="os-terminal-head"><span>thach@os:~</span><span>LOCAL ONLY · NO SHELL</span></div>
+        <div id="os-terminal-output" class="os-terminal-output" role="log" aria-live="polite"></div>
+        <form id="os-terminal-form" class="os-terminal-form"><label for="os-terminal-input">$</label><input id="os-terminal-input" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="120" placeholder="help" aria-label="Nhập lệnh vào terminal"><button type="submit">Run ↵</button></form>
+      </div>
+    </article>
+    <article class="os-lab-card os-lab-card--wide">
+      <span class="os-lab-meta">LAB 04 / RELEASE PIPELINE / SIMULATION</span><h3>From source to users.</h3><p>Pipeline minh họa, không kết nối tới hệ thống CI/CD thật.</p>
+      <div id="os-pipeline" class="os-pipeline" aria-label="Các bước build pipeline">
+        <button type="button" data-os-pipeline="0">01 SOURCE</button><button type="button" data-os-pipeline="1">02 VALIDATE</button><button type="button" data-os-pipeline="2">03 BUILD</button><button type="button" data-os-pipeline="3">04 PACKAGE</button><button type="button" data-os-pipeline="4">05 RELEASE</button><button type="button" data-os-pipeline="5">06 DEPLOY</button>
+      </div>
+      <div class="os-lab-controls"><button type="button" id="os-pipeline-play">▶ Run pipeline</button><button type="button" id="os-pipeline-step">→ Step</button><button type="button" id="os-pipeline-reset">↺ Reset</button></div>
+      <p id="os-pipeline-description" role="status" aria-live="polite">SIMULATION · SOURCE — Chọn một bước hoặc chạy mô phỏng.</p>
+    </article>
+  </div>
+</section>
+
     <section id="github" class="section-shell section-space github-section" aria-labelledby="github-title">
       <div class="section-index"><span class="mono mint">10 / OPEN THE SOURCE</span><span class="mono dim">GITHUB / THACHDEPTRAI</span></div>
       <div class="github-heading"><h2 id="github-title">Code doesn't <em>lie.</em></h2><a class="button outline" href="https://github.com/thachdeptrai" target="_blank" rel="noopener noreferrer">@thachdeptrai ↗</a></div>
@@ -158,6 +213,9 @@
     <section class="manifesto section-shell" aria-label="Thông điệp cá nhân"><span class="mono mint">THE MINDSET</span><p>I DON'T CARE MUCH<br>ABOUT <span class="dim">TITLES.</span><br>I CARE ABOUT WHETHER<br>I CAN <em>BUILD IT.</em></p><span class="manifesto-caption">Learn the system. Break the problem down.<br>Build it. Debug it. Improve it.</span><div class="manifesto-star" aria-hidden="true">✳</div></section>
     <section id="contact" class="section-shell section-space contact-section" aria-labelledby="contact-title"><div class="section-index"><span class="mono mint">11 / WHAT'S NEXT?</span><span class="mono dim">ALWAYS LEARNING. ALWAYS BUILDING.</span></div><div class="contact-layout"><div><h2 id="contact-title">Let's build<br><em>something.</em><span class="contact-arrow" aria-hidden="true">↗</span></h2><p>Có một ý tưởng, một bài toán hoặc một cơ hội hợp tác?<br>Bắt đầu bằng một cuộc trò chuyện.</p></div><div class="contact-details"><a class="contact-email" href="mailto:ngocthachgenz@gmail.com">ngocthachgenz@gmail.com <span>↗</span></a><a href="tel:+84867487105">0867 487 105 <span>↗</span></a><a href="https://github.com/thachdeptrai" target="_blank" rel="noopener noreferrer">github.com/thachdeptrai <span>↗</span></a><button id="copy-email" class="copy-button">Sao chép email <span aria-hidden="true">⧉</span></button><span id="copy-status" class="copy-status" aria-live="polite"></span></div></div><div class="contact-identity"><strong>Nguyễn Ngọc Thạch</strong><p>Currently at VinFast · SAP EWM / Warehouse Operations</p><span>Technology • Systems • Development</span></div></section>
   </main>
+  <div class="os-chapter-progress" aria-hidden="true"><span id="os-chapter-progress"></span></div>
+  <div id="os-chapter-counter" class="os-chapter-counter" aria-live="off">01 / 12 — Arrival</div>
+  <dialog id="os-palette" class="os-palette" aria-label="Điều hướng nhanh"><div class="os-palette-head"><label for="os-palette-search">⌕</label><input id="os-palette-search" class="os-palette-search" type="search" placeholder="Jump to a chapter, action or link…" autocomplete="off"><button type="button" id="os-palette-close" class="os-palette-close" aria-label="Đóng">ESC</button></div><div id="os-palette-results" class="os-palette-results"></div></dialog>
   <footer class="section-shell"><a class="brand" href="#home">THACH<span>.</span></a><span class="mono">BUILD · LEARN · SOLVE · IMPROVE</span><small>© 2026 Nguyễn Ngọc Thạch</small><a href="#home" aria-label="Về đầu trang">↑</a></footer>
   <noscript><div class="noscript-note">Bạn vẫn có thể đọc nội dung và liên hệ. Bật JavaScript để khám phá 3D và các project tương tác.</div><style>.project-panel[hidden]{display:grid!important}.project-tabs{display:none}</style></noscript>
 </body>
