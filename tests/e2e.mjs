@@ -61,6 +61,8 @@ try{
  await send('Emulation.setDeviceMetricsOverride',{width:1440,height:900,deviceScaleFactor:1,mobile:false});
  await evalJs(`document.querySelector('#arrival').scrollIntoView({behavior:'instant'})`);await sleep(500);
  let img=await send('Page.captureScreenshot',{format:'png',captureBeyondViewport:false});await writeFile('screenshots/desktop.png',Buffer.from(img.data,'base64'));
+ for(const stage of ['warehouse','game','workshop']){await evalJs(`document.querySelector('#${stage}').scrollIntoView({behavior:'instant'})`);await sleep(650);assert.equal(await evalJs(`document.querySelector('[data-nav=${stage}]').getAttribute('aria-current')`),'location');const sceneImage=await send('Page.captureScreenshot',{format:'png',captureBeyondViewport:false});await writeFile(`screenshots/scene-${stage}.png`,Buffer.from(sceneImage.data,'base64'));}
+ console.log('PASS scene navigation: warehouse, game network, workshop screenshots');
  await send('Emulation.setDeviceMetricsOverride',{width:390,height:844,deviceScaleFactor:1,mobile:true});
  await send('Page.navigate',{url});await ready(()=>evalJs(`document.readyState==='complete' && document.querySelector('#project-selector')?.children.length===6`));
  assert.equal(await evalJs(`document.documentElement.scrollWidth <= window.innerWidth + 2`),true,'mobile horizontal overflow');
