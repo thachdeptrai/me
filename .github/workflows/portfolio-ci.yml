@@ -1,72 +1,48 @@
-name: THACH.OS static validation
-
+name: THACH.OS Reborn — verify & capture
 on:
   push:
-    branches:
-      - "feat/**"
+    branches: ["feat/**"]
   pull_request:
-    branches:
-      - main
+    branches: [main]
   workflow_dispatch:
-
 permissions:
   contents: read
-
 concurrency:
-  group: thach-os-${{ github.ref }}
+  group: reborn-${{ github.ref }}
   cancel-in-progress: true
-
 jobs:
-  validate:
+  test:
     runs-on: ubuntu-latest
-    timeout-minutes: 8
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: "22"
-      - name: Static build and source checks
+          node-version: '22'
+      - name: Validate static production site
         run: npm run build
-      - name: Regression assertions
+      - name: Unit / source / component contract tests
         run: npm test
-      - name: HTTP smoke test under GitHub Pages subpath
-        shell: bash
+      - name: HTTP smoke under /me/
         run: |
-          set -euo pipefail
-          node scripts/serve.mjs --port 4173 > /tmp/thach-serve.log 2>&1 &
-          echo $! > /tmp/thach-server.pid
-          trap 'kill $(cat /tmp/thach-server.pid) || true' EXIT
-          for attempt in 1 2 3 4 5; do
-            if curl -fsS http://127.0.0.1:4173/me/ -o /tmp/thach-index.html; then break; fi
-            sleep 1
-          done
-          grep -q 'THACH.OS' /tmp/thach-index.html
-          curl -fsSI http://127.0.0.1:4173/me/assets/os-v2.css | grep -qi '200 OK'
-          curl -fsSI http://127.0.0.1:4173/me/assets/os-v2.js | grep -qi '200 OK'
-      - name: Browser runtime smoke and responsive screenshots
-        shell: bash
+          node scripts/serve.mjs --port 4173 & SERVER_PID=$!
+          trap 'kill $SERVER_PID || true' EXIT
+          for i in 1 2 3 4 5; do curl -fsS http://127.0.0.1:4173/me/ -o /tmp/me-index && break; sleep 1; done
+          grep -q 'THACH.OS REBORN' /tmp/me-index
+          curl -fsSI http://127.0.0.1:4173/me/src/world.js | grep -qi '200 OK'
+          curl -fsSI http://127.0.0.1:4173/me/src/style.css | grep -qi '200 OK'
+          curl -fsSI http://127.0.0.1:4173/me/src/app.js | grep -qi '200 OK'
+      - name: Chromium browser E2E (when available)
         run: |
-          set -euo pipefail
-          mkdir -p screenshots
-          BROWSER="$(command -v google-chrome || command -v chromium || true)"
-          if [ -z "$BROWSER" ]; then
-            echo "::notice::No browser available on runner; screenshot check skipped."
-            exit 0
+          if command -v chromium >/dev/null || command -v google-chrome >/dev/null; then
+            npm run test:e2e
+          else
+            echo '::notice::Chromium not present; browser E2E not run on this runner.'
           fi
-          node scripts/serve.mjs --port 4173 > /tmp/thach-browser-server.log 2>&1 &
-          SERVER_PID=$!
-          trap 'kill "$SERVER_PID" || true' EXIT
-          sleep 2
-          "$BROWSER" --headless --no-sandbox --disable-dev-shm-usage --disable-gpu --disable-background-networking --virtual-time-budget=5000 --dump-dom http://127.0.0.1:4173/me/ > /tmp/thach-dom.html 2>/tmp/thach-browser.log
-          grep -q 'THACH.OS LAB / SAFE INTERACTIVE TERMINAL' /tmp/thach-dom.html
-          "$BROWSER" --headless --no-sandbox --disable-dev-shm-usage --disable-gpu --window-size=1440,900 --virtual-time-budget=4000 --screenshot=screenshots/desktop.png http://127.0.0.1:4173/me/ >/tmp/thach-screenshot-desktop.log 2>&1
-          "$BROWSER" --headless --no-sandbox --disable-dev-shm-usage --disable-gpu --window-size=390,844 --virtual-time-budget=4000 --screenshot=screenshots/mobile.png http://127.0.0.1:4173/me/ >/tmp/thach-screenshot-mobile.log 2>&1
-          test -s screenshots/desktop.png
-          test -s screenshots/mobile.png
-      - name: Upload browser screenshots
-        uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v4
+        if: always()
         with:
-          name: thach-os-visual-smoke
+          name: thach-os-reborn-browser
           path: screenshots/*.png
           if-no-files-found: ignore
           retention-days: 7

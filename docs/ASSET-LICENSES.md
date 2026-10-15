@@ -1,13 +1,9 @@
-# Asset and attribution manifest — THACH.OS V2
+# Assets, intellectual property & licenses
 
-| Resource | Location | Origin | Status |
-| --- | --- | --- | --- |
-| WebGL / Canvas universe geometry | `assets/universe.js` | Code-generated local procedural geometry from baseline repo | Preserved |
-| Additional interface geometry, lines, particles and layout | `assets/os-v2.css` | Authored CSS gradients, shapes and transitions | Created locally |
-| Visual symbols and UI marks | HTML/CSS | Unicode and CSS, no external stock image package | No attribution dependency |
-| Favicon | `assets/favicon.svg` | Existing local SVG from repository | Preserved |
-| Be Vietnam Pro and Space Grotesk | `assets/style.css` | Optional Google Fonts CSS import | Existing external font dependency; system fallback available |
-
-No externally sourced GLB/GLTF models, videos, audio or screenshots were bundled in this milestone. No hotlinked external stock images or artwork were introduced.
-
-Before a later milestone embeds third-party media, review its license and attribution requirements, copy permitted assets into the repository, and document publisher + original URL + license version. Do not republish restricted game assets.
+- **Custom geometry and GLSL shader implementation (`src/world.js`)**: created for this site; no vendored WebGL library or downloaded model/image/textures.
+- **UI styles, copy and interaction modules**: authored for this project; no template or stock photo.
+- **`assets/favicon.svg`**: original T· monogram.
+- **Fonts**: optional Google Fonts CSS import (DM Sans / Manrope), subject to their respective open font licenses (commonly SIL Open Font License); system sans-serif fallback renders when blocked. No font binary redistributed.
+- **External GitHub/project links**: attribution and public source evidence only; no content mirrored.
+- **No personal/company logo or enterprise asset** incorporated from an external system.
+- **No private source, private data, credentials or screenshots** from other repositories embedded.

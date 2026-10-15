@@ -1,25 +1,18 @@
-// Local development only. GitHub Pages serves the static files directly.
-import { createServer } from 'node:http';
-import { readFile, stat } from 'node:fs/promises';
-import { fileURLToPath } from 'node:url';
-import { resolve, sep, extname } from 'node:path';
-const root = resolve(fileURLToPath(new URL('..', import.meta.url)));
-const args = process.argv.slice(2);
-const portIndex = args.indexOf('--port');
-const port = Number(portIndex >= 0 ? args[portIndex + 1] : process.env.PORT || 4173);
-const types = {'.html':'text/html; charset=utf-8','.css':'text/css; charset=utf-8','.js':'text/javascript; charset=utf-8','.svg':'image/svg+xml','.json':'application/json; charset=utf-8'};
-const server = createServer(async(req,res)=>{
-  try {
-    const path=decodeURIComponent(new URL(req.url,'http://localhost').pathname);
-    const relative=path==='/me'||path==='/me/'?'/':path.startsWith('/me/')?path.slice(3):path;
-    const target=resolve(root,'.'+relative);
-    if(target!==root&&!target.startsWith(root+sep)){res.writeHead(403);res.end();return;}
-    const info=await stat(target);
-    const file=info.isDirectory()?resolve(target,'index.html'):target;
-    const data=await readFile(file);
-    res.writeHead(200,{'Content-Type':types[extname(file)]||'application/octet-stream','Cache-Control':'no-store'});
-    if(req.method==='HEAD')res.end();else res.end(data);
-  } catch {res.writeHead(404,{'Content-Type':'text/plain; charset=utf-8'});res.end('Not found');}
+import {createServer} from 'node:http';
+import {readFile,stat} from 'node:fs/promises';
+import {resolve,dirname,extname,sep} from 'node:path';
+import {fileURLToPath} from 'node:url';
+const root=resolve(dirname(fileURLToPath(import.meta.url)),'..');
+const argIndex=process.argv.indexOf('--port');
+const port=Number(process.env.PORT || (argIndex<0?4173:process.argv[argIndex+1]));
+const mime={'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.svg':'image/svg+xml','.json':'application/json'};
+const server=createServer(async(req,res)=>{
+ try{const u=new URL(req.url,'http://localhost');if(u.pathname==='/me'){res.writeHead(308,{Location:'/me/'+u.search});res.end();return;}
+ if(!['GET','HEAD'].includes(req.method)){res.writeHead(405);res.end();return;}
+ const p=decodeURIComponent(u.pathname);if(!p.startsWith('/me/')){res.writeHead(404);res.end();return;}
+ const relative=p.slice(4)||'index.html';const file=resolve(root,relative);if(file!==root&&!file.startsWith(root+sep)){res.writeHead(403);res.end();return;}
+ if(relative.split('/').some(x=>x.startsWith('.')||x==='node_modules')||!Object.hasOwn(mime,extname(file))){res.writeHead(404);res.end();return;}
+ const st=await stat(file);if(!st.isFile())throw Error('not file');const body=await readFile(file);res.writeHead(200,{'Content-Type':mime[extname(file)],'Content-Length':body.length,'Cache-Control':'no-store','X-Content-Type-Options':'nosniff'});if(req.method==='HEAD')res.end();else res.end(body);
+ }catch{res.writeHead(404);res.end('Not found');}
 });
-server.listen(port,'0.0.0.0',()=>console.log(`Portfolio preview ready on port ${port}`));
-for(const signal of ['SIGTERM','SIGINT'])process.on(signal,()=>server.close(()=>process.exit(0)));
+server.listen(port,'127.0.0.1',()=>console.log(`THACH.OS REBORN local: http://127.0.0.1:${port}/me/`));
