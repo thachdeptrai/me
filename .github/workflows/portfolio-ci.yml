@@ -43,3 +43,30 @@ jobs:
           grep -q 'THACH.OS' /tmp/thach-index.html
           curl -fsSI http://127.0.0.1:4173/me/assets/os-v2.css | grep -qi '200 OK'
           curl -fsSI http://127.0.0.1:4173/me/assets/os-v2.js | grep -qi '200 OK'
+      - name: Browser runtime smoke and responsive screenshots
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p screenshots
+          BROWSER="$(command -v google-chrome || command -v chromium || true)"
+          if [ -z "$BROWSER" ]; then
+            echo "::notice::No browser available on runner; screenshot check skipped."
+            exit 0
+          fi
+          node scripts/serve.mjs --port 4173 > /tmp/thach-browser-server.log 2>&1 &
+          SERVER_PID=$!
+          trap 'kill "$SERVER_PID" || true' EXIT
+          sleep 2
+          "$BROWSER" --headless --no-sandbox --disable-dev-shm-usage --disable-gpu --disable-background-networking --virtual-time-budget=5000 --dump-dom http://127.0.0.1:4173/me/ > /tmp/thach-dom.html 2>/tmp/thach-browser.log
+          grep -q 'THACH.OS LAB / SAFE INTERACTIVE TERMINAL' /tmp/thach-dom.html
+          "$BROWSER" --headless --no-sandbox --disable-dev-shm-usage --disable-gpu --window-size=1440,900 --virtual-time-budget=4000 --screenshot=screenshots/desktop.png http://127.0.0.1:4173/me/ >/tmp/thach-screenshot-desktop.log 2>&1
+          "$BROWSER" --headless --no-sandbox --disable-dev-shm-usage --disable-gpu --window-size=390,844 --virtual-time-budget=4000 --screenshot=screenshots/mobile.png http://127.0.0.1:4173/me/ >/tmp/thach-screenshot-mobile.log 2>&1
+          test -s screenshots/desktop.png
+          test -s screenshots/mobile.png
+      - name: Upload browser screenshots
+        uses: actions/upload-artifact@v4
+        with:
+          name: thach-os-visual-smoke
+          path: screenshots/*.png
+          if-no-files-found: ignore
+          retention-days: 7
