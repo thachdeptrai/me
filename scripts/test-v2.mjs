@@ -17,8 +17,11 @@ required.forEach(id=>assert.ok(ids.includes(id),'Missing V2 hook: '+id));
 for(const match of html.matchAll(/href="#([^"]+)"/g)){
   assert.ok(ids.includes(match[1]),'Broken internal link #'+match[1]);
 }
-for(const target of ['assets/os-v2.css','assets/os-v2.js','assets/app.js','assets/universe.js','assets/data.js']){
+for(const target of ['assets/os-v2.css','assets/os-v2.js','assets/app.js']){
   assert.ok(html.includes('./'+target),'Asset missing from HTML: '+target);
+}
+for(const imported of ['assets/universe.js','assets/data.js']){
+  await source(imported); // loaded by app.js rather than directly in index.html
 }
 assert.equal((html.match(/data-os-packet="/g)||[]).length,5,'Packet nodes');
 assert.equal((html.match(/data-os-arch="/g)||[]).length,6,'Architecture nodes');
