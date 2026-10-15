@@ -6,28 +6,30 @@
   <meta name="theme-color" content="#080c10">
   <meta name="description" content="Nguyễn Ngọc Thạch — hiện làm việc tại VinFast, SAP EWM / vận hành kho. Khám phá các dự án mobile, Java game server, WebGL, networking và hệ thống triển khai thực tế.">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="THACH. — Building beyond titles.">
+  <meta property="og:title" content="THACH.OS — Beyond The Interface">
   <meta property="og:description" content="Nguyễn Ngọc Thạch. Technology • Systems • Development. From operations to code. From ideas to working systems.">
   <meta name="twitter:card" content="summary">
-  <title>THACH. — Nguyễn Ngọc Thạch · Building beyond titles.</title>
+  <title>THACH.OS — Nguyễn Ngọc Thạch · Beyond The Interface.</title>
   <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg">
   <link rel="stylesheet" href="./assets/style.css">
+  <link rel="stylesheet" href="./assets/os-v2.css">
   <script type="module" src="./assets/app.js"></script>
+  <script type="module" src="./assets/os-v2.js"></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Đi tới nội dung</a>
   <div class="reading-progress" aria-hidden="true"><span></span></div>
   <header class="site-header">
-    <a class="brand" href="#home" aria-label="THACH — về đầu trang">THACH<span>.</span></a>
+    <a class="brand" href="#home" aria-label="THACH.OS — về đầu trang">THACH<span>.</span><span class="brand-os">OS / V2</span></a>
     <nav class="desktop-nav" aria-label="Điều hướng chính">
       <a href="#about">Về mình</a><a href="#work">Dự án</a><a href="#systems">Hệ thống</a><a href="#journey">Hành trình</a><a href="#labs">Labs</a>
     </nav>
-    <div class="header-actions"><a class="contact-link" href="#contact">Kết nối <span aria-hidden="true">↗</span></a><button class="menu-toggle" aria-label="Mở menu" aria-expanded="false" aria-controls="mobile-nav"><span></span><span></span></button></div>
+    <div class="header-actions"><div class="os-utility" aria-label="Điều khiển trải nghiệm"><span class="os-utility-label">EXPERIENCE</span><button type="button" id="os-mode" class="os-mode-button" aria-label="Chọn chế độ trải nghiệm">◉ Cinema</button><button type="button" id="os-palette-open" class="os-trigger" aria-label="Mở menu điều hướng nhanh">⌕ Navigate <kbd>Ctrl K</kbd></button></div><a class="contact-link" href="#contact">Kết nối <span aria-hidden="true">↗</span></a><button class="menu-toggle" aria-label="Mở menu" aria-expanded="false" aria-controls="mobile-nav"><span></span><span></span></button></div>
     <nav id="mobile-nav" class="mobile-nav" aria-label="Điều hướng điện thoại" hidden><a href="#about">Về mình</a><a href="#work">Dự án</a><a href="#systems">Hệ thống</a><a href="#journey">Hành trình</a><a href="#labs">Labs</a><a href="#contact">Kết nối</a></nav>
   </header>
   <main id="main">
     <section id="home" class="hero section-shell" aria-labelledby="hero-title">
-      <div class="hero-top mono"><span>PERSONAL UNIVERSE / 2026</span><span class="hero-coordinate">BUILD · LEARN · SOLVE · IMPROVE</span></div>
+      <div class="hero-top mono"><span>THACH.OS / DIGITAL UNIVERSE / 2026</span><span class="hero-coordinate">BUILD · LEARN · SOLVE · IMPROVE</span></div>
       <div class="hero-layout">
         <div class="hero-copy">
           <p class="eyebrow"><span class="small-cross" aria-hidden="true">✳</span> NGUYỄN NGỌC THẠCH</p>
@@ -56,6 +58,17 @@
         </div>
       </div>
       <div class="hero-bottom mono"><a href="#currently">SCROLL TO EXPLORE <span aria-hidden="true">↓</span></a><p>MOBILE / GAME / BACKEND / WEB / INFRASTRUCTURE</p><a href="https://github.com/thachdeptrai" target="_blank" rel="noopener noreferrer">GITHUB ↗</a></div>
+    </section>
+
+    <section id="os-map" class="section-shell section-space os-field" aria-labelledby="os-map-title">
+      <div class="section-index"><span class="mono mint">SYSTEM / CHAPTER DIRECTORY</span><span class="mono dim">CHOOSE YOUR PATH</span></div>
+      <div class="section-heading"><h2 id="os-map-title" class="os-scene-title">Explore the <em>universe.</em></h2><p>Cuộn để khám phá hoặc chọn điểm đến. Mỗi chương thể hiện một góc nhìn về hệ thống mình xây dựng.</p></div>
+      <nav class="os-explore-map" aria-label="Khám phá các chương">
+        <a href="#currently"><span>01 / WORK</span><strong>Current reality ↗</strong></a><a href="#about"><span>02 / IDENTITY</span><strong>Two worlds ↗</strong></a>
+        <a href="#capabilities"><span>03 / SYSTEMS</span><strong>Technology ↗</strong></a><a href="#work"><span>04 / PROJECTS</span><strong>Project galaxy ↗</strong></a>
+        <a href="#systems"><span>05 / NETWORK</span><strong>Packet journey ↗</strong></a><a href="#journey"><span>06 / STORY</span><strong>Build timeline ↗</strong></a>
+        <a href="#os-engineering"><span>07 / LAB</span><strong>Engineering lab ↗</strong></a><a href="#contact"><span>08 / CONNECT</span><strong>Contact portal ↗</strong></a>
+      </nav>
     </section>
 
     <section id="currently" class="current-section section-shell" aria-labelledby="current-title">
@@ -158,6 +171,9 @@
     <section class="manifesto section-shell" aria-label="Thông điệp cá nhân"><span class="mono mint">THE MINDSET</span><p>I DON'T CARE MUCH<br>ABOUT <span class="dim">TITLES.</span><br>I CARE ABOUT WHETHER<br>I CAN <em>BUILD IT.</em></p><span class="manifesto-caption">Learn the system. Break the problem down.<br>Build it. Debug it. Improve it.</span><div class="manifesto-star" aria-hidden="true">✳</div></section>
     <section id="contact" class="section-shell section-space contact-section" aria-labelledby="contact-title"><div class="section-index"><span class="mono mint">11 / WHAT'S NEXT?</span><span class="mono dim">ALWAYS LEARNING. ALWAYS BUILDING.</span></div><div class="contact-layout"><div><h2 id="contact-title">Let's build<br><em>something.</em><span class="contact-arrow" aria-hidden="true">↗</span></h2><p>Có một ý tưởng, một bài toán hoặc một cơ hội hợp tác?<br>Bắt đầu bằng một cuộc trò chuyện.</p></div><div class="contact-details"><a class="contact-email" href="mailto:ngocthachgenz@gmail.com">ngocthachgenz@gmail.com <span>↗</span></a><a href="tel:+84867487105">0867 487 105 <span>↗</span></a><a href="https://github.com/thachdeptrai" target="_blank" rel="noopener noreferrer">github.com/thachdeptrai <span>↗</span></a><button id="copy-email" class="copy-button">Sao chép email <span aria-hidden="true">⧉</span></button><span id="copy-status" class="copy-status" aria-live="polite"></span></div></div><div class="contact-identity"><strong>Nguyễn Ngọc Thạch</strong><p>Currently at VinFast · SAP EWM / Warehouse Operations</p><span>Technology • Systems • Development</span></div></section>
   </main>
+  <div class="os-chapter-progress" aria-hidden="true"><span id="os-chapter-progress"></span></div>
+  <div id="os-chapter-counter" class="os-chapter-counter" aria-live="off">01 / 12 — Arrival</div>
+  <dialog id="os-palette" class="os-palette" aria-label="Điều hướng nhanh"><div class="os-palette-head"><label for="os-palette-search">⌕</label><input id="os-palette-search" class="os-palette-search" type="search" placeholder="Jump to a chapter, action or link…" autocomplete="off"><button type="button" id="os-palette-close" class="os-palette-close" aria-label="Đóng">ESC</button></div><div id="os-palette-results" class="os-palette-results"></div></dialog>
   <footer class="section-shell"><a class="brand" href="#home">THACH<span>.</span></a><span class="mono">BUILD · LEARN · SOLVE · IMPROVE</span><small>© 2026 Nguyễn Ngọc Thạch</small><a href="#home" aria-label="Về đầu trang">↑</a></footer>
   <noscript><div class="noscript-note">Bạn vẫn có thể đọc nội dung và liên hệ. Bật JavaScript để khám phá 3D và các project tương tác.</div><style>.project-panel[hidden]{display:grid!important}.project-tabs{display:none}</style></noscript>
 </body>
