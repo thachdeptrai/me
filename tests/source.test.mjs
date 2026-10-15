@@ -1,0 +1,6 @@
+import test from 'node:test';import assert from 'node:assert/strict';import {readFile} from 'node:fs/promises';
+const read=p=>readFile(new URL('../'+p,import.meta.url),'utf8');
+test('static deep links, SEO and landmarks work under /me/',async()=>{const html=await read('index.html');assert.match(html,/<html lang="vi">/);assert.match(html,/thachdeptrai.github.io\/me\//);assert.match(html,/<main id="main">/);assert.match(html,/href="#main"/);assert.equal((html.match(/data-scene=/g)||[]).length,8);});
+test('renderer has geometry, lighting, depth and cleanup',async()=>{const js=await read('src/world.js');for(const s of ['createBox','createTorus','createSphere','createCylinder','gl.enable(gl.DEPTH_TEST)','uViewProj','createWorld','gl.deleteProgram'])assert.ok(js.includes(s),s);});
+test('actions contain no remote execution or unsafe injected markup',async()=>{const js=await read('src/app.js');assert.doesNotMatch(js,/\beval\s*\(|new Function\s*\(|\.innerHTML\s*=/);assert.match(js,/textContent/);assert.match(js,/api.github.com\/repos\/thachdeptrai\/me/);});
+test('supports reduced motion, mobile mode, fallback',async()=>{const [css,app]=await Promise.all([read('src/style.css'),read('src/app.js')]);assert.match(css,/prefers-reduced-motion:reduce/);assert.match(css,/@media\(max-width:760px\)/);assert.match(app,/mode-lite/);assert.match(app,/webgl-note/);});
