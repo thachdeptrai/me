@@ -25,3 +25,9 @@ This is a **design-level budget, not measured FPS/LCP**. Performance measurement
 - Third-party Google Fonts and GitHub REST API can be offline, blocked or rate-limited; fallback exists.
 - Browser E2E on this managed container blocked by organizational Chrome policy; run in unrestricted CI.
 - Astro/React/R3F preference not followed; the custom static WebGL2 renderer is an intentional tradeoff documented in README.
+
+## Verified GitHub Actions browser run
+
+After fixing the project-link URL history collision at commit `1fe6ce85143cbfea15435ebca6cfc42375940b5a`, workflow run [38778874885](https://github.com/thachdeptrai/me/actions/runs/38778874885) completed **successfully**. Real Chromium browser logs confirm desktop DOM and interactions, deep-link refresh, safe terminal and command dialog, 390px mobile with no horizontal overflow, reduced-motion matching, no uncaught runtime exception and desktop/mobile screenshots as downloadable CI artifacts. The earlier failing run is retained as evidence that E2E detected an actual bug.
+
+The local managed Chromium is *still blocked*; CI browser success does not imply hardware/mobile Safari coverage. Scene-specific screenshots are added in the next verification milestone.
