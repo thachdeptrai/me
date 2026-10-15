@@ -6,3 +6,7 @@ body.mode-lite #world-canvas{opacity:0}body.mode-lite .world-veil{background:rad
 
 .signal-timeline{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin:50px 0 20px;max-width:1150px}.signal-timeline>div{border-top:1px solid rgba(160,214,203,.6);padding-top:18px}.signal-timeline span{font-size:10px;letter-spacing:.13em;color:var(--mint)}.signal-timeline strong{display:block;font:700 clamp(17px,2.3vw,27px) Manrope,sans-serif;letter-spacing:-.04em;margin-top:16px}.signal-timeline p{font-size:13px;line-height:1.7;margin-top:9px}@media(max-width:760px){.signal-timeline{grid-template-columns:1fr;gap:22px;margin:32px 0 20px}}
 .case-links button{background:none;border:0;border-bottom:1px solid var(--mint);color:var(--mint);font-size:12px;padding:0 0 7px;letter-spacing:0}
+
+/* Scene-aware reading veil: keep geometry visible to the right without sacrificing copy contrast. */
+body[data-scene="warehouse"] .world-veil,body[data-scene="workshop"] .world-veil{background:linear-gradient(90deg,rgba(10,16,22,.97) 0%,rgba(10,16,22,.89) 26%,rgba(10,16,22,.7) 41%,rgba(10,16,22,.26) 60%,transparent 78%),linear-gradient(0deg,rgba(10,16,22,.43),transparent 43%)}
+@media(max-width:760px){body[data-scene="warehouse"] .world-veil,body[data-scene="workshop"] .world-veil{background:linear-gradient(0deg,rgba(10,16,22,.72),rgba(10,16,22,.22) 45%,rgba(10,16,22,.12) 74%,rgba(10,16,22,.75))}}
