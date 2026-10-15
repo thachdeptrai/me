@@ -1,0 +1,45 @@
+name: THACH.OS static validation
+
+on:
+  push:
+    branches:
+      - "feat/**"
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: thach-os-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Static build and source checks
+        run: npm run build
+      - name: Regression assertions
+        run: npm test
+      - name: HTTP smoke test under GitHub Pages subpath
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/serve.mjs --port 4173 > /tmp/thach-serve.log 2>&1 &
+          echo $! > /tmp/thach-server.pid
+          trap 'kill $(cat /tmp/thach-server.pid) || true' EXIT
+          for attempt in 1 2 3 4 5; do
+            if curl -fsS http://127.0.0.1:4173/me/ -o /tmp/thach-index.html; then break; fi
+            sleep 1
+          done
+          grep -q 'THACH.OS' /tmp/thach-index.html
+          curl -fsSI http://127.0.0.1:4173/me/assets/os-v2.css | grep -qi '200 OK'
+          curl -fsSI http://127.0.0.1:4173/me/assets/os-v2.js | grep -qi '200 OK'
