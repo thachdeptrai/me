@@ -12,7 +12,7 @@ body{background:var(--os-bg);background-image:radial-gradient(ellipse 60% 20% at
 .hero-identity{letter-spacing:.07em}
 .hero-top:before{content:'';width:7px;height:7px;align-self:center;border-radius:50%;background:var(--os-mint);box-shadow:0 0 18px rgba(161,255,212,.85)}
 .hero-top{align-items:center}
-.universe{contain:layout paint}
+/* Keep original orbit labels and field insight from clipping outside the scene. */
 .universe:before{content:'';position:absolute;inset:12%;border:1px solid rgba(94,220,255,.1);border-radius:50%;box-shadow:inset 0 0 95px rgba(94,220,255,.025),0 0 95px rgba(94,220,255,.02);pointer-events:none}
 .section-index{border-color:rgba(161,255,212,.17)}
 .section-index .mint{color:var(--os-mint)}
@@ -99,3 +99,13 @@ body{background:var(--os-bg);background-image:radial-gradient(ellipse 60% 20% at
 @media(max-width:800px){.os-pipeline{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media(max-width:420px){.os-pipeline{grid-template-columns:repeat(2,minmax(0,1fr))}.os-share-project{float:none;display:block;margin:0 0 10px}}
 @media(prefers-reduced-motion:reduce){.os-pipeline button{transition:none!important;transform:none!important}}
+
+/* Header controls move to a floating dock at tablet/mobile widths.
+   This also handles headless Chrome's minimum layout width in screenshot testing. */
+@media(max-width:800px){
+  .os-utility{position:fixed;inset:auto auto 14px 50%;transform:translateX(-50%);z-index:125;display:flex;align-items:center;justify-content:center;gap:8px;max-width:calc(100% - 24px);background:rgba(8,13,18,.96);border:1px solid rgba(161,255,212,.26);border-radius:999px;padding:7px 10px;box-shadow:0 12px 48px rgba(0,0,0,.6);backdrop-filter:blur(12px)}
+  .os-utility .os-trigger,.os-utility .os-mode-button{white-space:nowrap;border-radius:999px}
+  .site-header .contact-link{display:none}
+  .site-header .brand-os{font-size:.5rem}
+  body{padding-bottom:65px}
+}
